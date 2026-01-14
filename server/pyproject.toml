@@ -1,12 +1,11 @@
 [project]
-name = "ctf-server"
+name = "server-v1"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
-    "fastapi>=0.128.0",
-    "granian>=2.6.1",
-    "orjson>=3.11.5",
-    "pyzipper>=0.2.6",
+    "msgspec>=0.20.0",
+    "pyzipper>=0.3.6",
+    "robyn>=0.74.0",
 ]

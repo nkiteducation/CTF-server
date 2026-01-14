@@ -18,7 +18,7 @@ COPY --from=builder /usr/local /usr/local
 
 WORKDIR /app
 COPY --from=builder ./rockyou.txt ./rockyou.txt
-COPY ./main.py .
+COPY app.py app.py
 
-ENTRYPOINT ["granian", "main:app", "--host", "0.0.0.0", "--port", "8080", "--interface", "asgi"]
-
+EXPOSE 8080
+CMD ["python3", "app.py", "--log-level", "INFO", "--disable-openapi", "--fast"]
