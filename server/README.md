@@ -98,4 +98,4 @@ docker run -p 8080:8080 -v $(pwd):/secret ctf-server
 
 - ZIP-файлы шифруются с использованием AES
 - Пароли выбираются случайно из списка
-- Флаги для web скрыты в HTML (не отображаются визуально)
+- Флаги для web скрыты в HTML (не отображаются визуально)Refactor code structure for improved readability and maintainability
