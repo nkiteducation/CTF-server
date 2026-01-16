@@ -6,8 +6,7 @@ import pyzipper
 from robyn import Request, Response, Robyn, html
 
 ROCKYOU_PATH = pathlib.Path("./rockyou.txt")
-SECRET_DIR = pathlib.Path("./secret")  
-
+SECRET_DIR = pathlib.Path("/secret")  
 
 class Flag(msgspec.Struct):
     zip: str = "None"
@@ -42,7 +41,7 @@ def generate_zip_file(flag_content: str) -> str:
         compression=pyzipper.ZIP_DEFLATED, 
         encryption=pyzipper.WZ_AES
     ) as zf:
-        zf.setpassword(password.encode("utf-8")) # Более универсально
+        zf.setpassword(password.encode("utf-8"))
         zf.writestr("flag.txt", flag_content.encode("utf-8"))
 
     return password
