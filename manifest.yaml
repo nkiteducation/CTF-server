@@ -1,0 +1,7 @@
+rpi:
+  - 127.0.0.1:8080
+flag:
+  zip: zip_0123456789_sec_part
+  web: web_9876543210_api_data
+  curl: curl_5556667778_req_type
+    
