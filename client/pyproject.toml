@@ -9,4 +9,5 @@ dependencies = [
     "msgspec>=0.20.0",
     "pyyaml>=6.0.3",
     "rich>=14.2.0",
+    "uvloop>=0.22.1",
 ]

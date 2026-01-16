@@ -4,6 +4,8 @@ import asyncio
 import aiohttp
 from rich.console import Console
 from rich.table import Table
+import uvloop
+
 
 MANIFEST_PATH = pathlib.Path("./manifest.yaml")
 console = Console()
@@ -95,6 +97,6 @@ async def main():
 
 if __name__ == "__main__":
     try:
-        asyncio.run(main())
+        uvloop.run(main())
     except KeyboardInterrupt:
         pass
