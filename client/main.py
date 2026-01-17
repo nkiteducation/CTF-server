@@ -32,11 +32,11 @@ def split_into_parts(s: str, n: int) -> list[str]:
         idx += part_len
     return parts
 
-async def send_config(session: aiohttp.ClientSession, host: str, payload: dict):
+async def send_config(session: aiohttp.ClientSession, host: str, payload: Flag):
     url = f"http://{host}/set-config"
     
     try:
-        async with session.post(url, json=payload, timeout=10) as response:
+        async with session.post(url, data=msgspec.msgpack.encode(payload), timeout=10) as response:
             if response.status == 200:
                 data = await response.json()
                 password = data.get("zip_password", "N/A")
@@ -72,11 +72,7 @@ async def main():
     async with aiohttp.ClientSession() as session:
         tasks = []
         for i in range(n):
-            payload = {
-                "zip": zip_parts[i],
-                "web": web_parts[i],
-                "curl": curl_parts[i]
-            }
+            payload = Flag(zip=zip_parts[i], web=web_parts[i], curl=curl_parts[i])
             tasks.append(send_config(session, rpis[i], payload))
         
         results = await asyncio.gather(*tasks)

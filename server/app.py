@@ -3,7 +3,7 @@ import secrets
 
 import msgspec
 import pyzipper
-from robyn import Request, Response, Robyn, html
+from robyn import Request, Response, Robyn
 from robyn.templating import JinjaTemplate
 
 BASE_DIR = pathlib.Path(__file__).resolve().parent
@@ -55,7 +55,7 @@ app = Robyn(__file__)
 
 @app.post("/set-config")
 async def set_config(request: Request):
-    config.flag = msgspec.json.decode(request.body, type=Flag)
+    config.flag = msgspec.msgpack.decode(request.body, type=Flag)
     password = generate_zip_file(config.flag.zip)
 
     return {"zip_password": password}
