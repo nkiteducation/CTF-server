@@ -21,4 +21,4 @@ COPY --from=builder ./rockyou.txt ./rockyou.txt
 COPY app.py app.py
 
 EXPOSE 8080
-CMD ["python3", "app.py", "--disable-openapi", "--fast", "--workers", "1", "--processes", "1"]
+CMD ["python3", "app.py", "--disable-openapi", "--workers", "1", "--processes", "1"]
