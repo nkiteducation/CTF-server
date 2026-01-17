@@ -17,6 +17,9 @@ FROM python:3.14-slim
 COPY --from=builder /usr/local /usr/local
 
 WORKDIR /app
+#RUN mkdir secret
+COPY ./templates ./templates
+
 COPY --from=builder ./rockyou.txt ./rockyou.txt
 COPY app.py app.py
 

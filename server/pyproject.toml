@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
+    "jinja2>=3.1.6",
     "msgspec>=0.20.0",
     "pyzipper>=0.3.6",
     "robyn>=0.74.0",

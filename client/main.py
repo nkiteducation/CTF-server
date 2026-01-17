@@ -52,9 +52,7 @@ async def main():
         console.print("[bold red]Файл manifest.yaml не найден![/bold red]")
         return
 
-    with open(MANIFEST_PATH, "rb") as f:
-        # msgspec.yaml эффективнее стандартного PyYAML
-        manifest = msgspec.yaml.decode(f.read(), type=Manifest)
+    manifest = msgspec.yaml.decode(MANIFEST_PATH.read_bytes(), type=Manifest)
 
     rpis = manifest.rpi
     n = len(rpis)

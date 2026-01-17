@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>CYBERCTF — Neon Vault</title>
+
+<style>
+  body{
+    margin:0;
+    font-family: monospace;
+    background:#050407;
+    color:#e6f7ff;
+  }
+
+  header, main, footer{
+    padding:20px;
+  }
+
+  .card{
+    background: rgba(255,255,255,0.04);
+    border-radius:12px;
+    padding:16px;
+    margin-bottom:16px;
+  }
+
+  /* Скрытие флага */
+  flag{
+    display:none;
+  }
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>CYBERCTF — Neon Vault</h1>
+  <p>Киберпанк CTF-портал. Исследуй исходники.</p>
+</header>
+
+<main>
+
+  <section class="card">
+    <h2>Задания</h2>
+    <ul>
+      <li>Neon Intro — pwn</li>
+      <li>Glitched Archive — forensics</li>
+      <li>Quantum Proxy — network</li>
+      <li>Neon Cipher — crypto</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Подсказка</h2>
+    <p>
+      Иногда ответы находятся не на поверхности.
+      Посмотри, как устроена страница.
+    </p>
+  </section>
+
+  <flag id="ctf-flag">
+    {{ FLAG }}
+  </flag>
+
+</main>
+
+<footer>
+  <small>Neon Vault © CTF demo</small>
+</footer>
+
+</body>
+</html>
+

@@ -4,9 +4,14 @@ import secrets
 import msgspec
 import pyzipper
 from robyn import Request, Response, Robyn, html
+from robyn.templating import JinjaTemplate
 
-ROCKYOU_PATH = pathlib.Path("./rockyou.txt")
-SECRET_DIR = pathlib.Path("/secret")  
+BASE_DIR = pathlib.Path(__file__).resolve().parent
+ROCKYOU_PATH= BASE_DIR / "rockyou.txt"
+SECRET_DIR = BASE_DIR / "secret"
+JINJA_TEMPLATE = JinjaTemplate(BASE_DIR / "templates")
+
+SECRET_DIR.mkdir(exist_ok=True)
 
 class Flag(msgspec.Struct):
     zip: str = "None"
@@ -32,7 +37,6 @@ config = Config.load_config()
 
 
 def generate_zip_file(flag_content: str) -> str:
-    SECRET_DIR.mkdir(exist_ok=True)
     password = secrets.choice(config.list_passwords)
     zip_path = SECRET_DIR / "flag.zip"
 
@@ -69,25 +73,7 @@ async def index(request: Request):
             description=f"flag: {config.flag.curl}\n",
         )
 
-    html_content = f"""<!DOCTYPE html>
-                        <html lang="ru">
-                        <head>
-                            <meta charset="UTF-8">
-                            <title>Page</title>
-                            <style>
-                                flag {{
-                                    display: none;
-                                }}
-                            </style>
-                        </head>
-                        <body>
-                            <h1>тут будет другой текст</h1>
-                            <h6>если я не поленюсь заменить</h6>
-                        </body>
-                        <flag>FLAG{{{config.flag.web}}}</flag>
-                        </html>"""
-
-    return html(html_content)
+    return JINJA_TEMPLATE.render_template("index.html", FLAG=config.flag.web)
 
 
 if __name__ == "__main__":
