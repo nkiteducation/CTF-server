@@ -6,10 +6,9 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN curl -L https://github.com/danielmiessler/SecLists/raw/master/Passwords/Leaked-Databases/rockyou.txt.tar.gz \
-    -o rockyou.txt.tar.gz && \
-    tar -xzf rockyou.txt.tar.gz && \
-    rm rockyou.txt.tar.gz
-
+    -o rockyou.txt.gz && \
+    gunzip rockyou.txt.gz
+    
 COPY pyproject.toml uv.lock ./
 RUN uv pip install -r pyproject.toml --system --compile-bytecode
 
@@ -17,7 +16,7 @@ FROM python:3.14-slim
 COPY --from=builder /usr/local /usr/local
 
 WORKDIR /app
-#RUN mkdir secret
+
 COPY ./templates ./templates
 
 COPY --from=builder ./rockyou.txt ./rockyou.txt
